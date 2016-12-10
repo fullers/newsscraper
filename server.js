@@ -57,7 +57,7 @@ db.once("open", function() {
 
 // Simple index route
 app.get("/", function(req, res) {
-  res.render('index');
+  res.redirect('/scrape');
 });
 
 // A GET request to scrape the echojs website
@@ -95,7 +95,7 @@ app.get("/scrape", function(req, res) {
     });
   });
   // Tell the browser that we finished scraping the text
-  res.send("Scrape Complete");
+  res.render("index");
 });
 
 // This will get the articles we scraped from the mongoDB
