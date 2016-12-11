@@ -168,30 +168,12 @@ app.post("/articles/:id", function(req, res) {
 
 // Create a new note or replace an existing note
 app.delete("/articles/:id/remove", function(req, res) {
-  // Create a new note and pass the req.body to the entry
-  var newNote = delete Note(req.body);
-
-  // And remove the note the db
-  newNote.remove(function(error, doc) {
-    // Log any errors
-    if (error) {
-      console.log(error);
-    }
-    // Otherwise
+  Note.remove({"_id": req.params.id}, function(req, data) {
+    if (err) {
+      console.log(err);
+    } 
     else {
-      // Use the article id to find and update it's note
-      Article.findOneAndRemove({ "_id": req.params.id }, { "note": doc._id })
-      // Execute the above query
-      .exec(function(err, doc) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-        }
-        else {
-          // Or send the document to the browser
-          res.send(doc);
-        }
-      });
+      console.log("Note Removed");
     }
   });
 });

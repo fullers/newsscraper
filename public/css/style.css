@@ -1,0 +1,52 @@
+body { 
+  background-image: url("http://i.imgur.com/VQaJKNO.jpg");
+  background-size: cover;
+}
+#title {
+  font-size: 50px;
+  font-family: Arial,Helvetica,sans-serif;
+  font-weight: bold;
+}
+#subtitle {
+font-family: Arial,Helvetica,sans-serif;
+}
+.well {
+
+  background-image: transparent !important;
+  background-color: black !important;
+  color: #ffffff;
+  opacity: .9;
+  float: bottom;
+
+}
+#wrapper {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5%;
+}
+#articles {
+  display: inline-block;
+  overflow: auto;
+  width: 60%;
+  height: 700px;
+  font-size: 20px;
+}
+#notes {
+  float: right;
+  width: 30%;
+}
+textarea, input {
+  display: block;
+  width: 100%;
+  background-color: #FCF5C7;
+  color: black;
+}
+input {
+  height: 36px;
+  font-size: 24px;
+}
+textarea {
+  height: 200px;
+  font-size: 18px;
+}
