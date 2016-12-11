@@ -40,7 +40,7 @@ app.use(express.static("public"));
 // Database configuration with mongoose
 var dbURI = 'mongodb://localhost/animenews';
 if (process.env.NODE_ENV === 'production') {
-    dbURI= process.env.MONGOLAB_URI;
+    dbURI= "mongodb://heroku_8qhzq9fv:1v76msceta2bve3o8r6bmjsfd2@ds117348.mlab.com:17348/heroku_8qhzq9fv";
 }
 mongoose.connect(dbURI);
 var db = mongoose.connection;
