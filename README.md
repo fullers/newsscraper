@@ -65,7 +65,7 @@ var db = mongoose.connection;
 
 ### Anime News Scraper! - Home Page 
 
-![Alt Text](/public/assets/img/newsscraper.png?raw=true "Anime News Scraper! Home Page")
+![Alt Text](/public/img/newsscraper.png?raw=true "Anime News Scraper! Home Page")
 
 The application will automatically scrape the news from [https://www.animenewsnetwork.com/](https://www.animenewsnetwork.com/). You can click on an article and you may save and delete notes about the article.
 
