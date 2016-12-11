@@ -37,12 +37,12 @@ app.use(bodyParser.urlencoded({
 // Make public a static dir
 app.use(express.static("public"));
 
-// Database configuration with mongoose
-// var dbURI = 'mongodb://localhost/animenews';
-// if (process.env.NODE_ENV === 'production') {
-//     dbURI= "mongodb://heroku_8qhzq9fv:1v76msceta2bve3o8r6bmjsfd2@ds117348.mlab.com:17348/heroku_8qhzq9fv";
-// }
-mongoose.connect("mongodb://heroku_8qhzq9fv:1v76msceta2bve3o8r6bmjsfd2@ds117348.mlab.com:17348/heroku_8qhzq9fv");
+//Database configuration with mongoose
+var dbURI = 'mongodb://localhost/animenews';
+if (process.env.NODE_ENV === 'production') {
+    dbURI= "mongodb://heroku_8qhzq9fv:1v76msceta2bve3o8r6bmjsfd2@ds117348.mlab.com:17348/heroku_8qhzq9fv";
+}
+mongoose.connect(dbURI);
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -136,12 +136,11 @@ app.get("/articles/:id", function(req, res) {
   });
 });
 
-
 // Create a new note or replace an existing note
 app.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
-  var newNote = delete Note(req.body);
-
+  var newNote = new Note(req.body);
+  
   // And save the new note the db
   newNote.save(function(error, doc) {
     // Log any errors
@@ -170,7 +169,7 @@ app.post("/articles/:id", function(req, res) {
 // Create a new note or replace an existing note
 app.delete("/articles/:id/remove", function(req, res) {
   // Create a new note and pass the req.body to the entry
-  var newNote = new Note(req.body);
+  var newNote = delete Note(req.body);
 
   // And remove the note the db
   newNote.remove(function(error, doc) {
