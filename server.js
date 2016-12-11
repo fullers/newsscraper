@@ -38,7 +38,11 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/animenews" || process.env.MONGOLAB_URI);
+var dbURI = 'mongodb://localhost/animenews';
+if (process.env.NODE_ENV === 'production') {
+    dbURI= process.env.MONGOLAB_URI;
+}
+mongoose.connect(dbURI);
 var db = mongoose.connection;
 
 // Show any mongoose errors
