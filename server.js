@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/animenews");
+mongoose.connect("mongodb://localhost/animenews" || process.env.MONGOLAB_URI);
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -94,7 +94,7 @@ app.get("/scrape", function(req, res) {
 
     });
   });
-  // Tell the browser that we finished scraping the text
+  // Tell the browser to render the index template when finished scraping the text
   res.render("index");
 });
 
@@ -136,7 +136,7 @@ app.get("/articles/:id", function(req, res) {
 // Create a new note or replace an existing note
 app.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
-  var newNote = new Note(req.body);
+  var newNote = delete Note(req.body);
 
   // And save the new note the db
   newNote.save(function(error, doc) {
@@ -163,8 +163,38 @@ app.post("/articles/:id", function(req, res) {
   });
 });
 
+// Create a new note or replace an existing note
+app.delete("/articles/:id/remove", function(req, res) {
+  // Create a new note and pass the req.body to the entry
+  var newNote = new Note(req.body);
 
-// Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+  // And remove the note the db
+  newNote.remove(function(error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Otherwise
+    else {
+      // Use the article id to find and update it's note
+      Article.findOneAndRemove({ "_id": req.params.id }, { "note": doc._id })
+      // Execute the above query
+      .exec(function(err, doc) {
+        // Log any errors
+        if (err) {
+          console.log(err);
+        }
+        else {
+          // Or send the document to the browser
+          res.send(doc);
+        }
+      });
+    }
+  });
+});
+
+// Listen on port Process Enviroment or 3000
+var PORT = process.env.PORT || 3000;
+app.listen(PORT, function() {
+  console.log("App running on port "+ PORT + "!");
 });
