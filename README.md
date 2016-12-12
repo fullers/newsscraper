@@ -23,16 +23,16 @@ The following technologies, tools, and npm packages were used:
  ## Files and Folder Structure
 
 * **server.js** - File used to start the node.js web server. Setup routes and MongoDB Connection
-* **package.json** - File used to insta the npm packages.
+* **package.json** - File used to install the npm packages.
 * **.gitignore** - File used to ignore the node_modules folder used by NPM.
-* **models** - Folder to house your model files.
+* **models** - Folder to house the model files.
 	* Article.js - File created for MongoDB, this model creates the document for MongoDB called articles.
 	* Note.js - File created for MongoDB, this model creates the document for MongoDB called notes.
 * **public** - Folder to store any files the browser needs to access.
 	* **css** - Sub folder to store css files.
 			* style.css - File used to create the CSS needed for the application.
 	* **img** - Sub folder to store image files.
-			*newsscraper.png - image used for this README.md
+			* newsscraper.png - image used for this README.md
 * **views** - Folder used for express-handlebars
 	* **layouts** - stores the main.handlbars view
 		* **main.handlebars** - View that creates the template for the application
@@ -40,7 +40,7 @@ The following technologies, tools, and npm packages were used:
 
 ## Requirements
 
-For MongoDB Connection.  Pleas note the `mongodb://` needs to be included first in your URI.
+For MongoDB Connection.  Please note the `mongodb://` needs to be included first in your URI.
 
 ```javascript
 
@@ -69,7 +69,7 @@ var db = mongoose.connection;
 
 The application will automatically scrape the news from [https://www.animenewsnetwork.com/](https://www.animenewsnetwork.com/). You can click on an article and you may save and delete notes about the article.
 
-## Authors
+## Author
 
 * **Shaun** - * Javascript, Node.js, Express, Express-Handlebars, Handlebars (HTML Templates), Mongoose, MongoDB*
 
